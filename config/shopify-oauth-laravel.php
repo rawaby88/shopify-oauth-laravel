@@ -40,7 +40,7 @@ return [
     | This URL that will be loaded when users opens the app from admin panel.
     |
      */
-    'app_home_url' => env('SHOPIFY_APP_HOME_URL'),
+    'app_home_url' => env('SHOPIFY_APP_HOME_URL', '/'),
 
     /*
     |--------------------------------------------------------------------------

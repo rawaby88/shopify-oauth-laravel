@@ -32,14 +32,12 @@
     },
     "autoload": {
         "psr-4": {
-            "joymendonca\\ShopifyOauthLaravel\\": "src/",
-            "joymendonca\\ShopifyOauthLaravel\\Database\\Factories\\": "database/factories/"
+            "joymendonca\\ShopifyOauthLaravel\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "joymendonca\\ShopifyOauthLaravel\\Tests\\": "tests/",
-            "Workbench\\App\\": "workbench/app/"
+            "joymendonca\\ShopifyOauthLaravel\\": "src/"   
         }
     },
     "scripts": {

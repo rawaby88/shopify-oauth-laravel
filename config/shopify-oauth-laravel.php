@@ -44,6 +44,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Callback URL
+    |--------------------------------------------------------------------------
+    |
+    | This redirect path used to redirect after installation of app
+    |
+     */
+    'api_version' => env('SHOPIFY_API_VERSION', '2024-01'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Session key
     |--------------------------------------------------------------------------
     |
@@ -116,6 +126,14 @@ return [
         |
          */
         'install' => \joymendonca\ShopifyOauthLaravel\Http\Controllers\ShopifyInstallController::class,
+        
+        /*
+        |--------------------------------------------------------------------------
+        | Shopify Uninstall API call controller
+        |--------------------------------------------------------------------------
+        |
+         */
+        'uninstall' => \joymendonca\ShopifyOauthLaravel\Http\Controllers\ShopifyUninstallController::class,
 
     ],
 ];

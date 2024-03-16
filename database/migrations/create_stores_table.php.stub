@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('store_url')->unique();
             $table->string('access_token');
             $table->string('scope');
+            $table->string('uninstall_webhook')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

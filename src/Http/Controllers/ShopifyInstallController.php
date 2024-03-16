@@ -14,7 +14,7 @@ class ShopifyInstallController extends Controller
         {
             $scopes = Config::get('shopify-oauth-laravel.scopes');
             $client_id = Config::get('shopify-oauth-laravel.client_id');
-            $redirect_url = url('/auth/load');
+            $redirect_url = url('/shopify-app-auth/load');
             $url = 'https://' . request('shop') . '/admin/oauth/authorize?client_id=' . $client_id . '&scope=' . $scopes . '&redirect_uri=' . $redirect_url . '&host=' . request('host');
             return redirect($url);
         } else {

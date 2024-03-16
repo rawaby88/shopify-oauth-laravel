@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace joymendonca\ShopifyOauthLaravel\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class ShopifyOauthLaravelCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'shopify-oauth-laravel';
 
     public $description = 'My command';
 

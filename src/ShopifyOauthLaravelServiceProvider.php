@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace joymendonca\ShopifyOauthLaravel;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
+use joymendonca\ShopifyOauthLaravel\Commands\ShopifyOauthLaravelCommand;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class ShopifyOauthLaravelServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -16,10 +16,10 @@ class SkeletonServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('skeleton')
+            ->name('shopify-oauth-laravel')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_skeleton_table')
-            ->hasCommand(SkeletonCommand::class);
+            ->hasMigration('create_shopify-oauth-laravel_table')
+            ->hasCommand(ShopifyOauthLaravelCommand::class);
     }
 }

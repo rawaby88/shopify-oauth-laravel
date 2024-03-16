@@ -35,7 +35,8 @@ class ShopifyLoadController extends Controller
                     'scope' => $response['scope'],
                 ]);
 
-                $user = $this->saveUserIfNotExist(request('shop'));
+                if(!$user = $this->getUserModelClass()::query()->where('store_url', request('shop'))->first())
+                    $user = $this->createUser($store);
 
                 if (isset($user->id) && isset($store->id)) {
                     if ($this->assignUserToStore($user->id, $store->id)) {
@@ -68,16 +69,21 @@ class ShopifyLoadController extends Controller
         return $calculated_hmac == $hmac;
     }
 
-    protected function saveUserIfNotExist($store_url)
+    protected function createUser($store)
     {
-        return $this->getUserModelClass()::query()->firstOrCreate([
-            'email' => 'store@'.$store_url,
-        ], [
-            'email' => 'store@'.$store_url,
-            'store_url' => $store_url
-        ]);
+        $api_version = Config::get('shopify-oauth-laravel.api_version');
+        $response = Http::withHeader('X-Shopify-Access-Token', $store->access_token)->get('https://' . $store->store_url . '/admin/api/' . $api_version . '/shop.json');
+        
+        if(isset($response['shop'])){
+            return $this->getUserModelClass()::query()->updateOrCreate([
+                'email' => isset($response['shop']['email']) ? $response['shop']['email'] : 'store@' . $store->store_url,
+            ], [
+                'email' => isset($response['shop']['email']) ? $response['shop']['email'] : 'store@' . $store->store_url,
+                'name' => isset($response['shop']['name']) ? $response['shop']['name'] : null,
+                'store_url' => $store->store_url
+            ]);
+        }
     }
-
     protected function assignUserToStore($user_id, $store_id): bool
     {
         $store_has_users = Config::get('shopify-oauth-laravel.tables.store_has_users');

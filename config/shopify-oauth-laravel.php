@@ -75,7 +75,7 @@ return [
         |--------------------------------------------------------------------------
         |
          */
-        'store_model' => \ShopifyOauthLaravel\Models\Store::class,
+        'store_model' => \joymendonca\ShopifyOauthLaravel\Models\Store::class,
 
     ],
 
@@ -117,7 +117,7 @@ return [
         |--------------------------------------------------------------------------
         |
          */
-        'load' => \ShopifyOauthLaravel\Http\Controllers\ShopifyLoadController::class,
+        'load' => \joymendonca\ShopifyOauthLaravel\Http\Controllers\ShopifyLoadController::class,
 
         /*
         |--------------------------------------------------------------------------
@@ -125,7 +125,7 @@ return [
         |--------------------------------------------------------------------------
         |
          */
-        'install' => \ShopifyOauthLaravel\Http\Controllers\ShopifyInstallController::class,
+        'install' => \joymendonca\ShopifyOauthLaravel\Http\Controllers\ShopifyInstallController::class,
 
     ],
 ];

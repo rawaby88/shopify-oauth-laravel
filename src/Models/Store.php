@@ -1,6 +1,6 @@
 <?php
 
-namespace ShopifyOauthLaravel\Models;
+namespace joymendonca\ShopifyOauthLaravel\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;

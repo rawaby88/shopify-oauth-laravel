@@ -1,6 +1,6 @@
 <?php
 
-namespace ShopifyOauthLaravel\Http\Controllers;
+namespace joymendonca\ShopifyOauthLaravel\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use joymendonca\ShopifyOauthLaravel\Facades\ShopifyOauthLaravel;
 
-class ShopifyLOadController extends Controller
+class ShopifyLoadController extends Controller
 {
     public function load(): RedirectResponse
     {

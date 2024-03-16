@@ -4,7 +4,6 @@ namespace joymendonca\ShopifyOauthLaravel;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use joymendonca\ShopifyOauthLaravel\Commands\ShopifyOauthLaravelCommand;
 
 class ShopifyOauthLaravelServiceProvider extends PackageServiceProvider
 {

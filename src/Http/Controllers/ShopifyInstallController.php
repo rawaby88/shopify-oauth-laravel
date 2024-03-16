@@ -1,12 +1,10 @@
 <?php
 
-namespace ShopifyOauthLaravel\Http\Controllers;
+namespace joymendonca\ShopifyOauthLaravel\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Http;
 
 class ShopifyInstallController extends Controller
 {

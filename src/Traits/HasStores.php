@@ -1,9 +1,9 @@
 <?php
 
-namespace ShopifyOauthLaravel\Traits;
+namespace joymendonca\ShopifyOauthLaravel\Traits;
 
 use Illuminate\Support\Facades\Config;
-use ShopifyOauthLaravel\Models\Store;
+use joymendonca\ShopifyOauthLaravel\Models\Store;
 
 trait HasStores
 {

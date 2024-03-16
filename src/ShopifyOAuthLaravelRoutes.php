@@ -2,7 +2,7 @@
 
 namespace joymendonca\ShopifyOauthLaravel;
 
-class ShopifyOauthLaravelRoutes
+class ShopifyOAuthLaravelRoutes
 {
     public static function register()
     {

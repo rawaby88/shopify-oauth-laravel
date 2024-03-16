@@ -19,7 +19,8 @@ class ShopifyOauthLaravelServiceProvider extends PackageServiceProvider
             ->name('shopify-oauth-laravel')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_shopify-oauth-laravel_table')
-            ->hasCommand(ShopifyOauthLaravelCommand::class);
+            ->hasMigration('update_users_table')
+            ->hasMigration('create_stores_table')
+            ->hasMigration('create_store_has_users_table');
     }
 }

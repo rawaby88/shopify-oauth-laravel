@@ -3,6 +3,7 @@
 namespace joymendonca\ShopifyOauthLaravel;
 
 use Closure;
+use Exception;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 
@@ -17,9 +18,24 @@ class ShopifyOauthLaravel
         Session::put($this->getStoreUrlSessionKey(), $store_url);
     }
 
-    public function getStoreHash(): string|false
+    public function getStoreUrl(): string|false
     {
         return Session::get($this->getStoreUrlSessionKey(), false);
+    }
+
+    public function getStoreAccessToken(): string|bool
+    {
+        if (!($store_url = $this->getStoreUrl()))
+            throw new Exception('Store url is not set. Please set store url using setStoreUrl method.');
+
+        $store = $this->getStoreModelClass()::query()
+            ->select(['id', 'access_token'])
+            ->where('store_url', $store_url)
+            ->first();
+        if (!$store)
+            return false;
+
+        return (string)$store->access_token;
     }
 
     public function callInstallCallback($user, $store)
@@ -52,5 +68,10 @@ class ShopifyOauthLaravel
     private function getSessionKey(): string
     {
         return Config::get('shopify-oauth-laravel.session_key', 'shopify_auth');
+    }
+
+    protected function getStoreModelClass(): string
+    {
+        return Config::get('shopify-oauth-laravel.models.store_model');
     }
 }

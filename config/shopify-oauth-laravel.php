@@ -20,7 +20,7 @@ return [
     | Shopify App client id is an id you will get after creating your app
     |
      */
-    'client_id' => env('SHOPIFY_CLIENT_SECRET'),
+    'client_secret' => env('SHOPIFY_CLIENT_SECRET'),
 
     /*
     |--------------------------------------------------------------------------

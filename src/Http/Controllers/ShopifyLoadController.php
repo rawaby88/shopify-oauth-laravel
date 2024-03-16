@@ -41,7 +41,7 @@ class ShopifyLoadController extends Controller
                     if ($this->assignUserToStore($user->id, $store->id)) {
                         Auth::login($user);
                         if(!$store->uninstall_webhook)
-                            $this->createUninstallWebhook(request('shop'), $response['access_token']);
+                            $this->createUninstallWebhook($store);
                         ShopifyOauthLaravel::setStoreUrl($store->store_url);
                         ShopifyOauthLaravel::callInstallCallback($user, $store);
                         ShopifyOauthLaravel::callLoadCallback($user, $store);
@@ -72,7 +72,6 @@ class ShopifyLoadController extends Controller
     {
         return $this->getUserModelClass()::query()->firstOrCreate([
             'email' => 'store@'.$store_url,
-            'store_url' => $store_url
         ], [
             'email' => 'store@'.$store_url,
             'store_url' => $store_url
@@ -96,7 +95,7 @@ class ShopifyLoadController extends Controller
         ]);
     }
 
-    protected function createUninstallWebhook($store_url, $access_token)
+    protected function createUninstallWebhook($store)
     {
         $data['webhook'] = [
             'address' => url('/shopify-app-auth/uninstall'),
@@ -104,10 +103,10 @@ class ShopifyLoadController extends Controller
             'format' => 'json',
         ];
         $api_version = Config::get('shopify-oauth-laravel.api_version');
-        $response = Http::withHeader('X-Shopify-Access-Token', $access_token)->post('https://' . $store_url . '/admin/api/' . $api_version . '/webhooks.json', $data);
+        $response = Http::withHeader('X-Shopify-Access-Token', $store->access_token)->post('https://' . $store->store_url . '/admin/api/' . $api_version . '/webhooks.json', $data);
         
         if(isset($response['webhook']['id'])){
-            $this->getStoreModelClass()::query()->update([
+            $this->getStoreModelClass()::query()->where('id',$store->id)->update([
                 'uninstall_webhook' => $response['webhook']['id']
             ]);
         }

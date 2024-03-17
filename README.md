@@ -1,84 +1,58 @@
-# A simple package to make Shopify App Oauth easy.
+# Shopify OAuth Laravel Package
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/joymendonca/shopify-oauth-laravel.svg?style=flat-square)](https://packagist.org/packages/joymendonca/shopify-oauth-laravel)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/joymendonca/shopify-oauth-laravel/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/joymendonca/shopify-oauth-laravel/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/joymendonca/shopify-oauth-laravel/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/joymendonca/shopify-oauth-laravel/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/joymendonca/shopify-oauth-laravel.svg?style=flat-square)](https://packagist.org/packages/joymendonca/shopify-oauth-laravel)
-
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/shopify-oauth-laravel.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/shopify-oauth-laravel)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+This package provides a convenient way to integrate Shopify OAuth authentication into your Laravel application. It simplifies the process of setting up OAuth with Shopify, allowing you to focus on building your application's features rather than dealing with the intricacies of authentication.
 
 ## Installation
 
-You can install the package via composer:
+You can install this package via Composer. Run the following command in your terminal:
 
 ```bash
 composer require joymendonca/shopify-oauth-laravel
 ```
 
-You can publish and run the migrations with:
+## Configuration
+
+After installing the package, you'll need to publish and run the migrations with:
 
 ```bash
 php artisan vendor:publish --tag="shopify-oauth-laravel-migrations"
 php artisan migrate
 ```
 
-You can publish the config file with:
+You can also publish the config file using:
 
 ```bash
 php artisan vendor:publish --tag="shopify-oauth-laravel-config"
 ```
 
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
+You will now need to setup the environment variables in your .env file:
 
 ```bash
-php artisan vendor:publish --tag="shopify-oauth-laravel-views"
+APP_URL="https://your-website.com"                    #The base url for your website
+SHOPIFY_CLIENT_ID="your-shopify-client-id"            #Shopify App Client ID
+SHOPIFY_CLIENT_SECRET="your-shopify-client-secret"    #Shopify App Client Secret
+SHOPIFY_SCOPES="read_products,write_products"         #Shopify App Scopes Needed
+SHOPIFY_APP_HOME_URL='/'                              #URL you want the user to get redirected to when the launch the app
 ```
 
+You can register the routes using the code below in web.php:
+
+```php
+use joymendonca\ShopifyOauthLaravel\ShopifyOAuthLaravelRoutes;
+
+ShopifyOAuthLaravelRoutes::register();
+```
+Make sure the app install url registered in your shopify app is "https://your-website.com/shopify-app-auth/install" and the redirect url is "https://your-website.com/shopify-app-auth/load"
 ## Usage
 
+Once the package is installed and configured, you can start using Shopify OAuth in your Laravel application.
+
+You can get the access token and store url of the logged in as below:
+
 ```php
-$shopifyOauthLaravel = new joymendonca\ShopifyOauthLaravel();
-echo $shopifyOauthLaravel->echoPhrase('Hello, joymendonca!');
+use joymendonca\ShopifyOauthLaravel\Facades\ShopifyOauthLaravel;
+
+$access_token = ShopifyOauthLaravel::getStoreAccessToken();
+$store_url = ShopifyOauthLaravel::getStoreUrl();
 ```
 
-## Testing
-
-```bash
-composer test
-```
-
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
-
-## Credits
-
-- [Joy Mendonca](https://github.com/joymendonca)
-- [All Contributors](../../contributors)
-
-## License
-
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

@@ -104,7 +104,7 @@ class ShopifyLoadController extends Controller
     protected function createUninstallWebhook($store)
     {
         $data['webhook'] = [
-            'address' => url('/shopify-app-auth/uninstall'),
+            'address' => Config::get('shopify-oauth-laravel.base_url') . '/shopify-app-auth/uninstall',
             'topic' => 'app/uninstalled',
             'format' => 'json',
         ];

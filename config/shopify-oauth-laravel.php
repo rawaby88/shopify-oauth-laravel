@@ -34,23 +34,33 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Callback URL
+    | Scopes
     |--------------------------------------------------------------------------
     |
-    | This redirect path used to redirect after installation of app
+    | Access scopes for shopify app
     |
      */
     'scopes' => env('SHOPIFY_SCOPES'),
 
     /*
     |--------------------------------------------------------------------------
-    | Callback URL
+    | API Version
     |--------------------------------------------------------------------------
     |
-    | This redirect path used to redirect after installation of app
+    | The API version to use for shopify api calls
     |
      */
     'api_version' => env('SHOPIFY_API_VERSION', '2024-01'),
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Base URL
+    |--------------------------------------------------------------------------
+    |
+    | The base URL of the site
+    |
+     */
+    'base_url' => env('APP_URL'),
 
     /*
     |--------------------------------------------------------------------------

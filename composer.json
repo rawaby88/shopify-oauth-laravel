@@ -1,12 +1,12 @@
 {
-    "name": "joymendonca/shopify-oauth-laravel",
+    "name": "rawaby88/shopify-oauth-laravel",
     "description": "A simple package to make Shopify App Oauth easy.",
     "keywords": [
         "Joy Mendonca",
         "laravel",
         "shopify-oauth-laravel"
     ],
-    "homepage": "https://github.com/joymendonca/shopify-oauth-laravel",
+    "homepage": "https://github.com/rawaby88/shopify-oauth-laravel",
     "license": "MIT",
     "authors": [
         {
